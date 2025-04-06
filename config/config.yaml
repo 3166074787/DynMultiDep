@@ -1,0 +1,58 @@
+data_dir: "/yourSavePath"
+save_dir: "/yourSavePath"
+
+dataset: dvlog  # dvlog or lmvd
+train_gender: both  # both, male, female
+test_gender: both   # both, male, female
+model: DynMultiDep
+train: true
+epochs: 120
+batch_size: 32
+learning_rate: 5e-4
+lr_scheduler: cos
+if_wandb: false
+
+gpu: "0"
+device:
+  - "cuda"
+tqdm_able: false
+
+
+mmmamba:
+  # Mamba SSM
+  mamba_config:
+    d_state: 12
+    expand: 4
+    d_conv: 4
+    bidirectional: true
+
+  audio_input_size: 25
+  video_input_size: 136
+  mm_output_sizes: [256]
+  dropout: 0.1
+  d_ffn: 1024
+  num_layers: 1
+  activation: 'GELU'
+  causal: false
+  temp: 1.0
+  hard_gate: true
+
+mmmamba_lmvd:
+  # Mamba SSM
+  mamba_config:
+    d_state: 16
+    expand: 4
+    d_conv: 4
+    bidirectional: true
+
+  audio_input_size: 128
+  video_input_size: 136
+  mm_output_sizes: [256]
+  dropout: 0.1
+  d_ffn: 1024
+  num_layers: 1
+  activation: 'GELU'
+  causal: false
+  temp: 1.0
+  hard_gate: true
+
